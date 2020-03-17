@@ -14,6 +14,7 @@ extern int wgGetSocketV4(int handle);
 extern int wgGetSocketV6(int handle);
 extern char *wgGetConfig(int handle);
 extern char *wgVersion();
+extern void cryptoCurve25519Keygen(unsigned char pubKey[32], unsigned char privateKey[32]);
 
 JNIEXPORT jint JNICALL Java_com_wireguard_android_backend_GoBackend_wgTurnOn(JNIEnv *env, jclass c, jstring ifname, jint tun_fd, jstring settings)
 {
@@ -68,4 +69,28 @@ JNIEXPORT jstring JNICALL Java_com_wireguard_android_backend_GoBackend_wgVersion
 	ret = (*env)->NewStringUTF(env, version);
 	free(version);
 	return ret;
+}
+
+JNIEXPORT jbyteArray JNICALL Java_com_wireguard_crypto_Key_generate(JNIEnv *env, jclass c, jbyteArray privateKey)
+{
+	jbyteArray pubKey;
+	jbyte *pubKeyBytes, *privateKeyBytes;
+
+	privateKeyBytes = (*env)->GetByteArrayElements(env, privateKey, NULL);
+	if (!privateKeyBytes)
+		return NULL;
+	pubKey = (*env)->NewByteArray(env, 32);
+	if (!pubKey) {
+		(*env)->ReleaseByteArrayElements(env, privateKey, privateKeyBytes, JNI_ABORT);
+		return NULL;
+	}
+	pubKeyBytes = (*env)->GetByteArrayElements(env, pubKey, NULL);
+	if (!pubKeyBytes) {
+		(*env)->ReleaseByteArrayElements(env, privateKey, privateKeyBytes, JNI_ABORT);
+		return NULL;
+	}
+	cryptoCurve25519Keygen((unsigned char *)pubKeyBytes, (unsigned char *)privateKeyBytes);
+	(*env)->ReleaseByteArrayElements(env, pubKey, pubKeyBytes, 0);
+	(*env)->ReleaseByteArrayElements(env, privateKey, privateKeyBytes, JNI_ABORT);
+	return pubKey;
 }

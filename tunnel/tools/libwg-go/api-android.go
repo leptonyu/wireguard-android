@@ -11,11 +11,12 @@ import "C"
 
 import (
 	"bufio"
+	"bytes"
+	"golang.org/x/crypto/curve25519"
 	"golang.org/x/sys/unix"
 	"golang.zx2c4.com/wireguard/device"
 	"golang.zx2c4.com/wireguard/ipc"
 	"golang.zx2c4.com/wireguard/tun"
-	"bytes"
 	"log"
 	"math"
 	"net"
@@ -188,6 +189,13 @@ func wgGetConfig(tunnelHandle int32) *C.char {
 //export wgVersion
 func wgVersion() *C.char {
 	return C.CString(device.WireGuardGoVersion)
+}
+
+//export cryptoCurve25519Keygen
+func cryptoCurve25519Keygen(publicKeyPtr *byte, privateKeyPtr *byte) {
+	publicKey := (*[32]byte)(unsafe.Pointer(publicKeyPtr))
+	privateKey := (*[32]byte)(unsafe.Pointer(privateKeyPtr))
+	curve25519.ScalarBaseMult(publicKey, privateKey)
 }
 
 func main() {}

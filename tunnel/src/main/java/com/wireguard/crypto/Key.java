@@ -192,6 +192,8 @@ public final class Key {
         return new Key(privateKey);
     }
 
+    private static native byte[] generate(byte[] privateKey);
+
     /**
      * Generates a public key from an existing private key.
      *
@@ -199,9 +201,7 @@ public final class Key {
      * @return a well-formed public key that corresponds to the supplied private key
      */
     static Key generatePublicKey(final Key privateKey) {
-        final byte[] publicKey = new byte[Format.BINARY.getLength()];
-        Curve25519.eval(publicKey, 0, privateKey.getBytes(), null);
-        return new Key(publicKey);
+        return new Key(generate(privateKey.getBytes()));
     }
 
     @Override
