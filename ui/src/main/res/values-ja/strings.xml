@@ -49,8 +49,8 @@
     <string name="create_activity_title">WireGuard トンネルの作成</string>
     <string name="create_bin_dir_error">ローカルバイナリディレクトリを作成できません</string>
     <string name="create_empty">空の状態から作成</string>
-    <string name="create_from_file">ファイル、アーカイブから作成</string>
-    <string name="create_from_qr_code">QRコードから作成</string>
+    <string name="create_from_file">ファイル、アーカイブからインポート</string>
+    <string name="create_from_qr_code">QRコードをスキャン</string>
     <string name="create_output_dir_error">出力ディレクトリを作成できません</string>
     <string name="create_downloads_file_error">ダウンロードディレクトリにファイルを作成できません</string>
     <string name="create_temp_dir_error">ローカルに一時ディレクトリを作成できません</string>
@@ -99,6 +99,7 @@
     <string name="module_disabler_disabled_summary">カーネルモジュールは実験的ですがパフォーマンスが向上する可能性があります。</string>
     <string name="module_disabler_enabled_title">カーネルモジュールバックエンドの無効化</string>
     <string name="module_disabler_enabled_summary">ユーザースペースバックエンドは低速ですが安定しています。</string>
+    <string name="success_application_will_restart">成功。アプリケーションは再起動します…</string>
     <string name="mtu">MTU</string>
     <string name="multiple_tunnels_title">複数トンネルの同時有効化</string>
     <string name="multiple_tunnels_summary_on">同時に複数のトンネルを有効化できます</string>
@@ -114,7 +115,6 @@
     <string name="parse_error_integer">数値</string>
     <string name="parse_error_reason">%1$s の内容を解読できません “%2$s”</string>
     <string name="peer">ピア</string>
-    <string name="permission_description">アプリに WireGuard トンネルの制御を許可します。この権限を持つアプリはトンネルの起動停止ができるようになりますが、インターネットトラフィックが意図しない方向に向かう可能性があります。</string>
     <string name="permission_label">control WireGuard tunnels</string>
     <string name="persistent_keepalive">持続的キープアライブ</string>
     <string name="pre_shared_key">事前共有鍵</string>

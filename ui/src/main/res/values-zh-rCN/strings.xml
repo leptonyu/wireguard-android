@@ -49,8 +49,6 @@
     <string name="create_activity_title">创建 WireGuard 隧道</string>
     <string name="create_bin_dir_error">无法创建本地二进制文件目录</string>
     <string name="create_empty">手动创建</string>
-    <string name="create_from_file">导入配置或压缩包</string>
-    <string name="create_from_qr_code">扫描二维码</string>
     <string name="create_output_dir_error">无法创建输出目录</string>
     <string name="create_downloads_file_error">无法在下载目录中创建文件</string>
     <string name="create_temp_dir_error">无法创建本地临时目录</string>
@@ -114,7 +112,6 @@
     <string name="parse_error_integer">数字</string>
     <string name="parse_error_reason">无法解析%1$s “%2$s”&#32;</string>
     <string name="peer">节点 / Peer</string>
-    <string name="permission_description">允许其他应用控制 WireGuard 隧道（开启 / 关闭），但可能会误传一些流量</string>
     <string name="permission_label">控制 WireGuard 隧道</string>
     <string name="persistent_keepalive">连接保活间隔</string>
     <string name="pre_shared_key">预共享密钥</string>
