@@ -31,6 +31,20 @@
         android:banner="@mipmap/banner">
 
         <activity android:name=".activity.TunnelToggleActivity" android:theme="@style/NoBackgroundTheme"/>
+        <activity android:name=".activity.ShareActionReceiverActivity"
+            android:theme="@style/NoBackgroundTheme"
+            android:label="@string/log_saver_activity_label">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+            <meta-data
+                android:name="android.service.chooser.chooser_target_service"
+                android:value="androidx.sharetarget.ChooserTargetServiceCompat" />
+            <meta-data android:name="android.app.shortcuts" android:resource="@xml/shortcuts" />
+        </activity>
+
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -57,6 +71,13 @@
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="fullSensor"
             tools:replace="screenOrientation" />
+
+        <activity android:name=".activity.LogViewerActivity"
+            android:label="@string/log_viewer_title">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+            </intent-filter>
+        </activity>
 
         <receiver android:name=".BootShutdownReceiver">
             <intent-filter>

@@ -22,6 +22,7 @@ android {
     }
     compileSdkVersion 29
     dataBinding.enabled true
+    viewBinding.enabled true
     defaultConfig {
         applicationId 'com.wireguard.android'
         minSdkVersion 21
@@ -81,9 +82,12 @@ dependencies {
     implementation "androidx.databinding:databinding-runtime:$agpVersion"
     implementation "androidx.fragment:fragment:$fragmentVersion"
     implementation "androidx.preference:preference:$preferenceVersion"
+    implementation "androidx.sharetarget:sharetarget:$shareTargetVersion"
     implementation "com.google.android.material:material:$materialComponentsVersion"
     implementation "com.journeyapps:zxing-android-embedded:$zxingEmbeddedVersion"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
     implementation "net.sourceforge.streamsupport:android-retrofuture:$streamsupportVersion"
     implementation "net.sourceforge.streamsupport:android-retrostreams:$streamsupportVersion"
 }

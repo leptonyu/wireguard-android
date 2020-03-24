@@ -11,6 +11,9 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.app.ActionBar
+import androidx.core.content.pm.ShortcutInfoCompat
+import androidx.core.content.pm.ShortcutManagerCompat
+import androidx.core.graphics.drawable.IconCompat
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.wireguard.android.R
@@ -54,6 +57,7 @@ class MainActivity : BaseActivity(), FragmentManager.OnBackStackChangedListener 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
+        buildShareTargets()
         actionBar = supportActionBar
         isTwoPaneLayout = findViewById<View>(R.id.master_detail_wrapper) is LinearLayout
         supportFragmentManager.addOnBackStackChangedListener(this)
@@ -122,5 +126,16 @@ class MainActivity : BaseActivity(), FragmentManager.OnBackStackChangedListener 
                     .addToBackStack(null)
                     .commit()
         }
+    }
+
+    private fun buildShareTargets() {
+        val shortcut = ShortcutInfoCompat.Builder(this, "log-save")
+                .setShortLabel(getString(R.string.log_saver_activity_label))
+                .setIcon(IconCompat.createWithResource(this, R.mipmap.ic_launcher_round))
+                .setIntent(Intent(Intent.ACTION_DEFAULT))
+                .setLongLived(true)
+                .setCategories(setOf(ShareActionReceiverActivity.CATEGORY_LOG_SAVE))
+                .build()
+        ShortcutManagerCompat.addDynamicShortcuts(this, listOf(shortcut))
     }
 }
